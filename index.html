@@ -273,15 +273,14 @@ footer span{color:var(--amber);}
 /* ══════════════════════════════════════
    JSONBIN CONFIG — both bins hardcoded
 ══════════════════════════════════════ */
-const API_KEY   = '$2a$10$SYsiGZBmf8Y2lOKUBhWJeeEW3ZXANwzon1l5b9br8fV0rwZzn6huO';
+const API_KEY   = '$2a$10$E9wLiyGDbIf7H9.U6zYt4eR3TjDMCyZ0.2g32wEWXRUC9SgTsAXQS';
 const BIN_THOUGHTS = '69c0deddc3097a1dd54e8af8';
 const BIN_VERSES   = '69c0ded1aa77b81da90d9b82';
 
 // PUT — needs auth for private write on public bins
 const HEADERS_PUT = {
   'Content-Type':'application/json',
-  'X-Master-Key': API_KEY,
-  'X-Access-Key': API_KEY
+  'X-Master-Key': API_KEY
 };
 
 function binURL(id){return `https://api.jsonbin.io/v3/b/${id}`;}
@@ -710,7 +709,7 @@ if(window.matchMedia('(min-width:601px) and (hover:hover)').matches){
     showVerse();
     renderFeed();
     _lastLen=THOUGHTS.length;
-    setInterval(poll,2000);
+    setInterval(poll,15000);
     setTimeout(()=>document.getElementById('hdr').classList.add('go'),80);
     setTimeout(()=>document.getElementById('rule').classList.add('on'),280);
     setTimeout(()=>document.getElementById('vc').classList.add('go'),360);
