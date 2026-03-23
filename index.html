@@ -274,10 +274,15 @@ footer span{color:var(--amber);}
    JSONBIN CONFIG — both bins hardcoded
 ══════════════════════════════════════ */
 const API_KEY   = '$2a$10$SYsiGZBmf8Y2lOKUBhWJeeEW3ZXANwzon1l5b9br8fV0rwZzn6huO';
-const BIN_THOUGHTS = '69c0d836b7ec241ddc93a761';
-const BIN_VERSES   = '69c0d97baa77b81da90d8685';
+const BIN_THOUGHTS = '69c0deddc3097a1dd54e8af8';
+const BIN_VERSES   = '69c0ded1aa77b81da90d9b82';
 
-const HEADERS = {
+// GET — no auth needed for public bins
+const HEADERS_GET = {
+  'X-Bin-Meta':'false'
+};
+// PUT — needs auth
+const HEADERS_PUT = {
   'Content-Type':'application/json',
   'X-Master-Key': API_KEY,
   'X-Access-Key': API_KEY,
@@ -287,12 +292,12 @@ const HEADERS = {
 function binURL(id){return `https://api.jsonbin.io/v3/b/${id}`;}
 
 async function binGET(id){
-  const r=await fetch(binURL(id),{headers:HEADERS});
+  const r=await fetch(binURL(id),{headers:HEADERS_GET});
   if(!r.ok)throw new Error(r.status);
   return await r.json();
 }
 async function binPUT(id,data){
-  const r=await fetch(binURL(id),{method:'PUT',headers:HEADERS,body:JSON.stringify(data)});
+  const r=await fetch(binURL(id),{method:'PUT',headers:HEADERS_PUT,body:JSON.stringify(data)});
   if(!r.ok)throw new Error(r.status);
   return await r.json();
 }
